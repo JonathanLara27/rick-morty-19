@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TabType } from '../../interfaces';
 import { RouterModule} from '@angular/router';
+import { TabType } from '../../constants';
 
 @Component({
   selector: 'app-navigation',

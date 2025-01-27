@@ -1,1 +1,5 @@
-export * from './rick-morty.interface'
+export * from './character.interface'
+export * from './location.interface'
+export * from './episode.interface'
+export * from './info.interface'
+export * from './pagination.interface'
