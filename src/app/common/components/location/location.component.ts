@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-episodes',
+  selector: 'app-location',
   standalone: true,
   imports: [
     CommonModule,
   ],
-  templateUrl: './episodes.component.html',
-  styleUrl: './episodes.component.css',
+  templateUrl: './location.component.html',
+  styleUrl: './location.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class EpisodesComponent { }
+export default class LocationComponent { }

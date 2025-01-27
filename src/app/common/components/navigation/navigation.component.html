@@ -1,1 +1,6 @@
-<p>navigation works!</p>,
+<section class="navs">
+    <span>Rick and App</span>
+    @for (item of tabs(); track $index) {
+        <a mat-button [routerLink]="item" routerLinkActive="active" class="nav">{{ item | uppercase }}</a>
+    }
+</section>
