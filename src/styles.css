@@ -1,4 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%;
+background-color: aliceblue;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container-page {
+    max-height: 87vh;
+}
+
+.container-table {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    position: relative;
+    border-radius: 20px;
+    background-color: white;
+    /* Sombras */
+    box-shadow: 0 0 10px rgba(0, 0,0,0.1);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.body {
+    padding: 1rem;
+}

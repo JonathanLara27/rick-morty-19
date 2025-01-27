@@ -1,21 +1,16 @@
-<ul>
-    @for (item of characters(); track item.id) {
-        <li>
-            {{item.name}}
-        </li>
-    }
-</ul>
-@if(isLoading()) {
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-}
-
-@if (canPrevButton()) {
-    <button (click)="setPage(currentPage()-1)">
-        PREV
-    </button>
-}
-@if (canNextButton()) {
-    <button (click)="setPage(currentPage()+1)">
-        NEXT
-    </button>
-}
+<section class="container-page">
+    <div class="container-table">
+        @if(isLoading()) {
+            <mat-progress-bar mode="indeterminate" style="margin-bottom: 1rem;"></mat-progress-bar>
+        }
+        <app-basic-table [columns]="columns()" [data]="characters()" [isLoading]="isLoading()"></app-basic-table>
+        <mat-paginator #paginator 
+        [pageSize]="characters().length" 
+        [length]="total()" 
+        (page)="handlePageEvent($event)" 
+        [showFirstLastButtons]="true"
+        [pageIndex]="currentPage()"
+        >
+        </mat-paginator>
+    </div>
+</section>

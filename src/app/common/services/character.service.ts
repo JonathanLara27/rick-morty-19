@@ -42,23 +42,25 @@ export class CharacterService {
     this.setLoading(true);
     await firstValueFrom(timer(150));
     this.http.get<responseCharacter>(`${this.url}?page=${page}`)
-    .subscribe(({info,results }: responseCharacter) => {
-      this.deleteCharacters();
-      results.forEach(character => {
-        this.stateCharacters().characters.set(character.id, character);
+    .subscribe({
+      next: ({ info, results }: responseCharacter) => {
+          this.deleteCharacters();
+          results.forEach(character => {
+            this.stateCharacters().characters.set(character.id, character);
+          });
+          this.stateCharacters.set({
+            characters: this.stateCharacters().characters,
+            info: {
+              count: info.count,
+              pages: info.pages,
+              next: info.next,
+              prev: info.prev,
+              currentPage: page,
+            },
+            isLoading: false
+          })
+        }
       });
-      this.stateCharacters.set({
-        characters: this.stateCharacters().characters,
-        info: {
-          count: info.count,
-          pages: info.pages,
-          next: info.next,
-          prev: info.prev,
-          currentPage: page,
-        },
-        isLoading: false
-      })
-    });
   }
 
   private setLoading(loading: boolean) {
