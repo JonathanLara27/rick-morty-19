@@ -5,7 +5,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BasicTableComponent } from '../../common/components/basic-table/basic-table.component';
 import { CharacterService } from '../../common/services/character.service';
 import { Character } from '../../common/interfaces';
-import { characterTableColums, displayedColumnsCharacter } from '../../common/constants';
+import { NavigationType, characterTableColums, displayedColumnsCharacter } from '../../common/constants';
+import { NavigationPagesComponent } from '../../common/components/navigation-pages/navigation-pages.component';
 @Component({
   selector: 'app-characters',
   standalone: true,
@@ -13,7 +14,8 @@ import { characterTableColums, displayedColumnsCharacter } from '../../common/co
     CommonModule,
     MatProgressBarModule,
     BasicTableComponent,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NavigationPagesComponent,
   ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.css',
@@ -32,6 +34,8 @@ export default class CharactersComponent {
   isLoading: Signal<boolean> = computed(() => this.characterService.stateCharacters().isLoading);
   totalPages: Signal<number> = computed(() => this.characterService.stateCharacters().info.pages);
 
+  navigationType: Signal<NavigationType> = computed(() => this.characterService.stateCharacters().navigationType);
+
   pageEvent!: PageEvent;
 
   columns = signal(characterTableColums);
@@ -44,6 +48,10 @@ export default class CharactersComponent {
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.setPage(e.pageIndex + 1);
+  }
+
+  setNavigationType(navigationType: NavigationType) {
+    this.characterService.setNavigationType(navigationType);
   }
 
 }

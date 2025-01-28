@@ -15,12 +15,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     position: relative;
     border-radius: 20px;
     background-color: white;
-    /* Sombras */
-    box-shadow: 0 0 10px rgba(0, 0,0,0.1);
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-.body {
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.p-1 {
+    padding: 0.25rem;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.p-3 {
     padding: 1rem;
 }

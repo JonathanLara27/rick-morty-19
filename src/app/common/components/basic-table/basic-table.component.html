@@ -1,5 +1,5 @@
-<section class="table-responsive table-container">
-    <table mat-table [dataSource]="tableDataSource()" class="mat-elevation-z8 table-border">
+<section class="table-responsive">
+    <table mat-table [dataSource]="tableDataSource()" class="shadow-md">
 
         @for (column of columns(); track $index) {
             <ng-container [matColumnDef]="column.field">

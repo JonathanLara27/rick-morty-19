@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
-import { ENDPOINTS } from '../constants';
-import {Character, responseCharacter} from '../interfaces/character.interface';
-import { InfoPagination, Pagination } from '../interfaces';
-import { firstValueFrom, tap, timer } from 'rxjs';
+import { Injectable, WritableSignal, inject, signal } from '@angular/core';
+import { ENDPOINTS, NavigationType } from '../constants';
+import {Character, responseCharacter, stateCharacter} from '../interfaces/character.interface';
+import { Pagination } from '../interfaces';
+import { firstValueFrom, timer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,17 @@ export class CharacterService {
 
   private http = inject(HttpClient);
 
-  stateCharacters = signal({
+  stateCharacters: WritableSignal<stateCharacter> = signal({
     characters: new Map<number,Character>(),
     isLoading: false,
+    navigationType: 'table' as NavigationType,
     info: {
       count: 0,
       pages: 0,
       currentPage: 1,
       next: null,
       prev: null,
-    } as InfoPagination
+    }
   });
 
   getFormatedCharacters() {
@@ -48,7 +49,8 @@ export class CharacterService {
           results.forEach(character => {
             this.stateCharacters().characters.set(character.id, character);
           });
-          this.stateCharacters.set({
+          this.stateCharacters.update((state) => ({
+            ...state,
             characters: this.stateCharacters().characters,
             info: {
               count: info.count,
@@ -57,8 +59,8 @@ export class CharacterService {
               prev: info.prev,
               currentPage: page,
             },
-            isLoading: false
-          })
+            isLoading: false,
+          }));
         }
       });
   }
@@ -77,6 +79,13 @@ export class CharacterService {
         characters: new Map<number,Character>()
       }
     });
+  }
+
+  setNavigationType(navigationType: NavigationType) {
+    this.stateCharacters.update((state) => ({
+      ...state,
+      navigationType
+    }));
   }
 
 }

@@ -1,0 +1,7 @@
+<section class="container-navs">
+    @for (item of navigationTypes(); track $index) {
+        <div class="container-button">
+            <button mat-raised-button (click)="setNavigationType(item)">{{ getButtonTitle(item)}}</button>
+        </div>
+    }
+</section>

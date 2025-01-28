@@ -1,4 +1,5 @@
 import { InfoPagination } from ".";
+import { NavigationType } from "../constants";
 
 export interface responseCharacter {
     info: InfoPagination;
@@ -18,6 +19,13 @@ export interface Character {
     episode: string[];
     url: string;
     created: string;
+}
+
+export interface stateCharacter {
+    characters: Map<number, Character>;
+    isLoading: boolean;
+    navigationType: NavigationType;
+    info: InfoPagination;
 }
 
 enum Gender {

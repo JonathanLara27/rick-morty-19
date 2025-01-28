@@ -1,0 +1,12 @@
+.container-navs {
+  background-color: rgb(228, 228, 228);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35vw, 1fr));
+  gap: 2rem;
+  padding: 0.5rem;
+}
+.container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
