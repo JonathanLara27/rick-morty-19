@@ -1,13 +1,12 @@
 import { Location, stateLocation, TableColumn } from "../interfaces";
-import { NavigationType } from "./types";
 
 export const locationTableColums : TableColumn[] = [
-    {header: 'ID', field: 'id', cellClass: 'text-center'},
-    {header: 'Nombre', field: 'name', cellClass: 'text-center'},
-    {header: 'Tipo', field: 'type', cellClass: 'text-center'},
-    {header: 'Dimensión', field: 'dimension', cellClass: 'text-center'},
-    {header: 'Url', field: 'url', cellClass: 'text-center', type: 'url'},
-    {header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center'},
+    {header: 'ID', field: 'id'},
+    {header: 'Nombre', field: 'name'},
+    {header: 'Tipo', field: 'type'},
+    {header: 'Dimensión', field: 'dimension'},
+    {header: 'Url', field: 'url', cellClass: 'text-center', type: 'url', headerClass: 'text-center'},
+    {header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center', headerClass: 'text-center'},
 ];
 
 export const displayedColumnsLocation = locationTableColums.map(column => column.field);

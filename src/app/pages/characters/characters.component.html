@@ -7,7 +7,7 @@
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
                 }
                 <app-basic-table [columns]="columns()" [data]="characters()" [isLoading]="isLoading()"></app-basic-table>
-                <mat-paginator [pageSize]="characters().length" [length]="total()" (page)="handlePageEvent($event)"
+                <mat-paginator [length]="total()" (page)="handlePageEvent($event)"
                     [showFirstLastButtons]="true" [pageIndex]="currentPage()">
                 </mat-paginator>
         </div>

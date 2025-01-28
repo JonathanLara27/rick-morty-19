@@ -2,7 +2,7 @@
   border-radius: 20px;
   /* max-width: 200px; */
   /* max-width: 300px; */
-  background-color: rgb(148, 148, 148);
+  background-color: rgb(232, 232, 232);
 }
 
 .card-character img {
@@ -23,10 +23,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
-}
-
-.color-white {
-  color: white;
 }
 
 .alive {

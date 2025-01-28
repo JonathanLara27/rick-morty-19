@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, viewChild } from '@angular/core';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BasicTableComponent } from '../../common/components/basic-table/basic-table.component';
-import { NavigationPagesComponent } from '../../common/components/navigation-pages/navigation-pages.component';
 import { LocationService } from '../../common/services/location.service';
 import { locationTableColums, NavigationType } from '../../common/constants';
 
@@ -28,10 +27,12 @@ export default class LocationsComponent {
   total = computed(() => this.locationService.stateLocations().info.count);
   currentPage = computed(() => this.locationService.stateLocations().info.currentPage -1);
   isLoading = computed(() => this.locationService.stateLocations().isLoading);
-  totalPages = computed(() => this.locationService.stateLocations().info.pages);
 
   columns = signal(locationTableColums);
   displayedColumns = signal(locationTableColums);
+
+  //obtenemos el paginator
+  paginator = viewChild(MatPaginator);
 
 
   private setPage(page: number) { 
@@ -41,6 +42,5 @@ export default class LocationsComponent {
   handlePageEvent(e: PageEvent) {
     this.setPage(e.pageIndex + 1);
   }
-
 
 }
