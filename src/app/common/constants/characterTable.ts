@@ -1,4 +1,6 @@
+import { Character, stateCharacter } from "../interfaces";
 import { TableColumn } from "../interfaces/tableColumn.interface";
+import { NavigationType } from "./types";
 
 export const characterTableColums : TableColumn[] = [
     {header: 'ID', field: 'id', cellClass: 'text-center'},
@@ -15,3 +17,16 @@ export const characterTableColums : TableColumn[] = [
 ]
 
 export const displayedColumnsCharacter = characterTableColums.map(column => column.field);
+
+export const INITIAL_STATE_CHARACTERS: stateCharacter = {
+    characters: new Map<number, Character>(),
+    isLoading: false,
+    navigationType: 'table' as NavigationType,
+    info: {
+        count: 0,
+        pages: 0,
+        currentPage: 1,
+        next: null,
+        prev: null,
+    }
+}

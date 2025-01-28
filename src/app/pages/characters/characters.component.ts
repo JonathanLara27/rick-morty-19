@@ -26,27 +26,20 @@ export default class CharactersComponent {
   characterService = inject(CharacterService);
   characters: Signal<Character[]> = computed(() => this.characterService.getFormatedCharacters());
   total= computed(() => this.characterService.stateCharacters().info.count);
-  canFirstButton: Signal<boolean> = computed(() => this.characterService.stateCharacters().info.currentPage > 1);
-  canPrevButton: Signal<boolean> = computed(() => !!this.characterService.stateCharacters().info.prev);
-  canNextButton: Signal<boolean> = computed(() => !!this.characterService.stateCharacters().info.next);
-  canLastButton: Signal<boolean> = computed(() => this.characterService.stateCharacters().info.currentPage < this.characterService.stateCharacters().info.pages);
   currentPage: Signal<number> = computed(() => this.characterService.stateCharacters().info.currentPage -1);
   isLoading: Signal<boolean> = computed(() => this.characterService.stateCharacters().isLoading);
   totalPages: Signal<number> = computed(() => this.characterService.stateCharacters().info.pages);
 
   navigationType: Signal<NavigationType> = computed(() => this.characterService.stateCharacters().navigationType);
 
-  pageEvent!: PageEvent;
-
   columns = signal(characterTableColums);
   displayedColumns = signal(displayedColumnsCharacter);
 
-  setPage(page: number) {
+  private setPage(page: number) {
     this.characterService.getCharacters({page});
   }
 
   handlePageEvent(e: PageEvent) {
-    this.pageEvent = e;
     this.setPage(e.pageIndex + 1);
   }
 

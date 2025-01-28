@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
-import { ENDPOINTS, NavigationType } from '../constants';
+import { ENDPOINTS, INITIAL_STATE_CHARACTERS, NavigationType } from '../constants';
 import {Character, responseCharacter, stateCharacter} from '../interfaces/character.interface';
 import { Pagination } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
@@ -14,18 +14,7 @@ export class CharacterService {
 
   private http = inject(HttpClient);
 
-  stateCharacters: WritableSignal<stateCharacter> = signal({
-    characters: new Map<number,Character>(),
-    isLoading: false,
-    navigationType: 'table' as NavigationType,
-    info: {
-      count: 0,
-      pages: 0,
-      currentPage: 1,
-      next: null,
-      prev: null,
-    }
-  });
+  stateCharacters: WritableSignal<stateCharacter> = signal(INITIAL_STATE_CHARACTERS);
 
   getFormatedCharacters() {
     return Array.from(this.stateCharacters().characters.values());

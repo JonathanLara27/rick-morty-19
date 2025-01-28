@@ -13,8 +13,8 @@ export interface Character {
     species: Species;
     type: string;
     gender: Gender;
-    origin: Location;
-    location: Location;
+    origin: Origin;
+    location: Origin;
     image: string;
     episode: string[];
     url: string;
@@ -35,7 +35,7 @@ enum Gender {
     Unknown = "unknown",
 }
 
-interface Location {
+interface Origin {
     name: string;
     url: string;
 }
