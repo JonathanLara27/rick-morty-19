@@ -6,7 +6,7 @@ export const locationTableColums : TableColumn[] = [
     {header: 'Nombre', field: 'name', cellClass: 'text-center'},
     {header: 'Tipo', field: 'type', cellClass: 'text-center'},
     {header: 'Dimensión', field: 'dimension', cellClass: 'text-center'},
-    {header: 'Url', field: 'url', cellClass: 'text-center'},
+    {header: 'Url', field: 'url', cellClass: 'text-center', type: 'url'},
     {header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center'},
 ];
 

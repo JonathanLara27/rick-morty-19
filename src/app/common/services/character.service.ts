@@ -4,6 +4,8 @@ import { ENDPOINTS, INITIAL_STATE_CHARACTERS, NavigationType } from '../constant
 import {Character, responseCharacter, stateCharacter} from '../interfaces/character.interface';
 import { Pagination } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
+import { setLoading, setNavigationType } from '../utils';
+import { resetSignal } from '../utils/resetSignal';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +31,13 @@ export class CharacterService {
    }
 
   async getCharacters({page}: Pagination) {
-    this.setLoading(true);
+    setLoading(this.stateCharacters,true);
     await firstValueFrom(timer(150));
     this.http.get<responseCharacter>(`${this.url}?page=${page}`)
     .subscribe({
       next: ({ info, results }: responseCharacter) => {
-          this.deleteCharacters();
+          const { count, next, pages, prev } = info
+          resetSignal(this.stateCharacters, 'characters');
           results.forEach(character => {
             this.stateCharacters().characters.set(character.id, character);
           });
@@ -42,10 +45,10 @@ export class CharacterService {
             ...state,
             characters: this.stateCharacters().characters,
             info: {
-              count: info.count,
-              pages: info.pages,
-              next: info.next,
-              prev: info.prev,
+              count,
+              next,
+              pages,
+              prev,
               currentPage: page,
             },
             isLoading: false,
@@ -54,27 +57,8 @@ export class CharacterService {
       });
   }
 
-  private setLoading(loading: boolean) {
-    this.stateCharacters.update((state) => ({
-      ...state,
-      isLoading: loading
-    }));
-  }
-
-  private deleteCharacters() {
-    this.stateCharacters.update((state) => {
-      return {
-        ...state,
-        characters: new Map<number,Character>()
-      }
-    });
-  }
-
   setNavigationType(navigationType: NavigationType) {
-    this.stateCharacters.update((state) => ({
-      ...state,
-      navigationType
-    }));
+    setNavigationType(this.stateCharacters, navigationType);
   }
 
 }

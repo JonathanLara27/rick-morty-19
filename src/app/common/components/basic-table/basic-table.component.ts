@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { Character, Episode } from '../../interfaces';
+import { Character, Episode, Location } from '../../interfaces';
 import { TableColumn } from '../../interfaces/tableColumn.interface';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
@@ -19,7 +19,7 @@ export class BasicTableComponent {
 
   data = input.required<Character[] | Episode[] | Location[]>();
   tableDataSource = computed(() => {
-    return new MatTableDataSource(this.data());
+    return new MatTableDataSource<Character | Episode | Location >(this.data() as Character[] | Episode[] | Location[]);
   });
   isLoading = input.required<boolean>();
   columns = input.required<TableColumn[]>();

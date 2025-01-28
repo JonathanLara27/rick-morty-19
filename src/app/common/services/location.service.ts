@@ -1,8 +1,10 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { ENDPOINTS, INITIAL_STATE_LOCATIONS, NavigationType } from '../constants';
 import { HttpClient } from '@angular/common/http';
-import { Pagination, responseLocation, stateLocation } from '../interfaces';
+import { Location, Pagination, responseLocation, stateLocation } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
+import { setLoading, setNavigationType } from '../utils';
+import { resetSignal } from '../utils/resetSignal';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class LocationService {
 
   stateLocations : WritableSignal<stateLocation> = signal(INITIAL_STATE_LOCATIONS);
 
-  getFormatedLocations() {
+  getFormatedLocations(): Location[] {
     return Array.from(this.stateLocations().locations.values());
   }
 
@@ -28,12 +30,13 @@ export class LocationService {
   }
 
   async getLocations({page}: Pagination) {
-    this.setLoading(true);
+    setLoading(this.stateLocations,true);
     await firstValueFrom(timer(150));
     this.http.get<responseLocation>(`${this.url}?page=${page}`)
     .subscribe({
       next: ({ info, results }: responseLocation) => {
-          this.deleteLocations();
+          const {count,next,pages,prev} = info;
+          resetSignal(this.stateLocations, 'locations');
           results.forEach(location => {
             this.stateLocations().locations.set(location.id, location);
           });
@@ -41,10 +44,10 @@ export class LocationService {
             ...state,
             locations: this.stateLocations().locations,
             info: {
-              count: info.count,
-              pages: info.pages,
-              next: info.next,
-              prev: info.prev,
+              count,
+              next,
+              pages,
+              prev,
               currentPage: page,
             },
             isLoading: false,
@@ -52,26 +55,9 @@ export class LocationService {
         }
     });
   }
-  
-  private setLoading(loading: boolean) {
-      this.stateLocations.update((state) => ({
-        ...state,
-        isLoading: loading
-      }));
-  }
-
-  private deleteLocations() {
-    this.stateLocations.update((state) => ({
-      ...state,
-      locations: new Map()
-    }));
-  }
 
   setNavigationType(navigationType: NavigationType) {
-    this.stateLocations.update((state) => ({
-      ...state,
-      navigationType
-    }));
+    setNavigationType(this.stateLocations, navigationType);
   }
   
 }
