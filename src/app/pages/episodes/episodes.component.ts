@@ -16,7 +16,6 @@ import { NavigationType, displayedColumnsEpisode, episodeTableColumns } from '..
     MatProgressBarModule,
     BasicTableComponent,
     MatPaginatorModule,
-    NavigationPagesComponent,
   ],
   templateUrl: './episodes.component.html',
   styleUrl: './episodes.component.css',
@@ -31,8 +30,6 @@ export default class EpisodesComponent {
   isLoading: Signal<boolean> = computed(() => this.episodeService.stateEpisodes().isLoading);
   totalPages: Signal<number> = computed(() => this.episodeService.stateEpisodes().info.pages);
 
-  navigationType: Signal<NavigationType> = computed(() => this.episodeService.stateEpisodes().navigationType);
-
   columns = signal(episodeTableColumns);
   displayedColumns = signal(displayedColumnsEpisode);
 
@@ -44,8 +41,5 @@ export default class EpisodesComponent {
     this.setPage(e.pageIndex + 1);
   }
 
-  setNavigationType(navigationType: NavigationType) {
-    this.episodeService.setNavigationType(navigationType);
-  }
 
 }

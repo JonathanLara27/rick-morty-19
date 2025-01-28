@@ -1,0 +1,31 @@
+<section class="card-character shadow-lg">
+    @defer (on immediate) {
+    <section class="card-content">
+
+        @defer  {
+            <img [src]="character().image" [alt]="character().name + 'Imagen'">
+        } @loading (after 100ms; minimum 1s) {
+            <ngx-skeleton-loader [theme]="{ height: '100px'}">
+            </ngx-skeleton-loader>
+        }
+
+        <div class="color-white info">
+            <h2 class="title">{{character().name}}</h2>
+            <p class="content">
+                <span [class]="getStatusStyle(character().status)"> {{character().status}}</span>
+                <span> - </span>
+                <span>{{character().gender}}</span>
+            </p>
+        </div>
+
+    </section>
+
+    } @placeholder (minimum 1000ms) {
+    <section class="container-skeleton">
+        <ngx-skeleton-loader [theme]="{ height: '100px'}">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader count="4" appearance="line"></ngx-skeleton-loader>
+    </section>
+
+    }
+</section>

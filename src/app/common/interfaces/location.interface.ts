@@ -20,5 +20,4 @@ export interface stateLocation {
     locations: Map<number, Location>;
     isLoading: boolean;
     info: InfoPagination;
-    navigationType: NavigationType;
 }

@@ -45,8 +45,14 @@ enum Species {
     Human = "Human",
 }
 
-enum Status {
+export enum Status {
     Alive = "Alive",
     Dead = "Dead",
+    Unknown = "unknown",
+}
+
+export enum StatusStyle {
+    Alive = "alive",
+    Dead = "dead",
     Unknown = "unknown",
 }

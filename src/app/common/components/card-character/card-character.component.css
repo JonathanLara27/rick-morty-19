@@ -1,0 +1,66 @@
+.card-character {
+  border-radius: 20px;
+  /* max-width: 200px; */
+  /* max-width: 300px; */
+  background-color: rgb(148, 148, 148);
+}
+
+.card-character img {
+  background-size: cover;
+  max-width: 170px;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+}
+
+.card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.container-skeleton {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.color-white {
+  color: white;
+}
+
+.alive {
+  color: green;
+}
+
+.dead {
+  color: red;
+}
+
+.unknown {
+  color: gray;
+}
+
+.title {
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  /* Mejora la legibilidad */
+  margin-bottom: 1rem;
+  /* Espacio entre títulos y contenido */
+}
+
+.content {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.5;
+  /* Mejora la legibilidad */
+  margin-bottom: 1rem;
+  /* Espacio entre párrafos */
+}
+
+/* media cuando es 347px o menos */
+@media (max-width: 347px) {
+  .card-character img {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+}

@@ -7,6 +7,7 @@ import { CharacterService } from '../../common/services/character.service';
 import { Character } from '../../common/interfaces';
 import { NavigationType, characterTableColums, displayedColumnsCharacter } from '../../common/constants';
 import { NavigationPagesComponent } from '../../common/components/navigation-pages/navigation-pages.component';
+import { CardCharacterComponent } from '../../common/components/card-character/card-character.component';
 @Component({
   selector: 'app-characters',
   standalone: true,
@@ -16,7 +17,8 @@ import { NavigationPagesComponent } from '../../common/components/navigation-pag
     BasicTableComponent,
     MatPaginatorModule,
     NavigationPagesComponent,
-  ],
+    CardCharacterComponent,
+],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

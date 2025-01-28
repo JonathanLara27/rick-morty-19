@@ -1,8 +1,5 @@
 <section class="container-page">
-    <app-navigation-pages [navigationType]="navigationType()"
-        (navigationTypeSelected)="setNavigationType($event)"></app-navigation-pages>
-    @if (navigationType()==='table') {
-    <div class="container-table shadow-lg p-3">
+    <div class="container-table shadow-lg p-3 mt-3">
         @if(isLoading()) {
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         }
@@ -11,7 +8,4 @@
             [showFirstLastButtons]="true" [pageIndex]="currentPage()">
         </mat-paginator>
     </div>
-    }@else {
-    Galeria
-    }
 </section>

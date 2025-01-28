@@ -18,6 +18,5 @@ export interface Episode {
 export interface stateEpisode {
     episodes: Map<number, Episode>;
     isLoading: boolean;
-    navigationType: NavigationType;
     info: InfoPagination;
 }

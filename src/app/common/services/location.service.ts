@@ -3,7 +3,7 @@ import { ENDPOINTS, INITIAL_STATE_LOCATIONS, NavigationType } from '../constants
 import { HttpClient } from '@angular/common/http';
 import { Location, Pagination, responseLocation, stateLocation } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
-import { setLoading, setNavigationType } from '../utils';
+import { setLoading } from '../utils';
 import { resetSignal } from '../utils/resetSignal';
 
 @Injectable({
@@ -54,10 +54,6 @@ export class LocationService {
           }));
         }
     });
-  }
-
-  setNavigationType(navigationType: NavigationType) {
-    setNavigationType(this.stateLocations, navigationType);
   }
   
 }

@@ -1,5 +1,4 @@
-import { NavigationType } from ".";
-import { Episode, TableColumn } from "../interfaces";
+import { Episode, TableColumn, stateEpisode } from "../interfaces";
 
 export const episodeTableColumns : TableColumn[] = [
     {header: 'ID', field: 'id', },
@@ -12,10 +11,9 @@ export const episodeTableColumns : TableColumn[] = [
 
 export const displayedColumnsEpisode = episodeTableColumns.map(column => column.field);
 
-export const INITIAL_STATE_EPISODES = {
+export const INITIAL_STATE_EPISODES: stateEpisode = {
     episodes: new Map<number,Episode>(),
     isLoading: false,
-    navigationType: 'table' as NavigationType,
     info: {
         count: 0,
         pages: 0,

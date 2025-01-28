@@ -56,8 +56,4 @@ export class EpisodeService {
     });
   }
 
-  setNavigationType(navigationType: NavigationType) {
-    setNavigationType(this.stateEpisodes, navigationType);
-  }
-
 }

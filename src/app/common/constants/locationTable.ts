@@ -15,7 +15,6 @@ export const displayedColumnsLocation = locationTableColums.map(column => column
 export const INITIAL_STATE_LOCATIONS : stateLocation = {
     locations: new Map<number, Location>(),
     isLoading: false,
-    navigationType: 'table' as NavigationType,
     info: {
         count: 0,
         pages: 0,

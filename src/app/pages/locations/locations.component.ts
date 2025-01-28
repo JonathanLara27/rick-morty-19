@@ -15,7 +15,6 @@ import { locationTableColums, NavigationType } from '../../common/constants';
     MatProgressBarModule,
     BasicTableComponent,
     MatPaginatorModule,
-    NavigationPagesComponent,
   ],
   templateUrl: './locations.component.html',
   styleUrl: './locations.component.css',
@@ -31,8 +30,6 @@ export default class LocationsComponent {
   isLoading = computed(() => this.locationService.stateLocations().isLoading);
   totalPages = computed(() => this.locationService.stateLocations().info.pages);
 
-  navigationType = computed(() => this.locationService.stateLocations().navigationType);
-
   columns = signal(locationTableColums);
   displayedColumns = signal(locationTableColums);
 
@@ -45,8 +42,5 @@ export default class LocationsComponent {
     this.setPage(e.pageIndex + 1);
   }
 
-  setNavigationType(navigationType: NavigationType) {
-    this.locationService.setNavigationType(navigationType);
-  }
 
 }
