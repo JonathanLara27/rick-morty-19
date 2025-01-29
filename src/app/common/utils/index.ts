@@ -1,6 +1,5 @@
 export {handleRequest} from './handleRequest'
 export { paginatorES } from './paginatorES'
-export { compare } from './compare'
 export { setLoading } from './setLoading'
 export { setNavigationType } from './setNavigationtype'
 export { applyFilter } from './applyFilter'
