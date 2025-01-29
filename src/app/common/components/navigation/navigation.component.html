@@ -1,5 +1,5 @@
 <section class="navs">
-    <span>Rick and Morty App</span>
+    <h1>Rick and Morty App</h1>
     @for (item of tabs(); track $index) {
         <a mat-button [routerLink]="item" routerLinkActive="active" class="nav">{{ item | uppercase }}</a>
     }

@@ -18,16 +18,27 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 export class BasicTableComponent { 
 
   data = input.required<Character[] | Episode[] | Location[]>();
+
+  filter = input<string>();
+
   tableDataSource = computed(() => {
-    return new MatTableDataSource<Character | Episode | Location >(this.data() as Character[] | Episode[] | Location[]);
+    const dataSource = new MatTableDataSource<Character | Episode | Location>(this.data() as Character[] | Episode[] | Location[]);
+    if (this.filter()) {
+      dataSource.filter = this.filter()!.trim().toLowerCase();
+    }
+    return dataSource;
   });
+
+  
   isLoading = input.required<boolean>();
   columns = input.required<TableColumn[]>();
   displayedColumns = computed(() => this.columns().map(column => column.field));
-
+  
+  colSpan = computed(()=> this.columns().length + 1);
   resolveField(element: any, field: string, subfield?: string) {
     const value = field.split('.').reduce((prev, curr) => prev && prev[curr], element);
     return subfield ? value?.[subfield] : value;
   }
+
 
 }

@@ -7,15 +7,20 @@ import { NavigationPagesComponent } from '../../common/components/navigation-pag
 import { EpisodeService } from '../../common/services/episode.service'
 import { Episode } from '../../common/interfaces';
 import { NavigationType, displayedColumnsEpisode, episodeTableColumns } from '../../common/constants';
+import { applyFilter } from '../../common/utils';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-episodes',
-  standalone: true,
+  // standalone: true,
   imports: [
     CommonModule,
     MatProgressBarModule,
     BasicTableComponent,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './episodes.component.html',
   styleUrl: './episodes.component.css',
@@ -33,12 +38,18 @@ export default class EpisodesComponent {
   columns = signal(episodeTableColumns);
   displayedColumns = signal(displayedColumnsEpisode);
 
+  filter = signal('');
+
   private setPage(page: number) {
     this.episodeService.getEpisodes({page});
   }
 
   handlePageEvent(e: PageEvent) {
     this.setPage(e.pageIndex + 1);
+  }
+
+  applyFilter(event: Event) {
+    applyFilter(this.filter, event);
   }
 
 

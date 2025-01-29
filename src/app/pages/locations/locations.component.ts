@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal, viewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BasicTableComponent } from '../../common/components/basic-table/basic-table.component';
 import { LocationService } from '../../common/services/location.service';
-import { locationTableColums, NavigationType } from '../../common/constants';
+import { locationTableColums } from '../../common/constants';
+import { applyFilter } from '../../common/utils';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-locations',
@@ -14,6 +17,8 @@ import { locationTableColums, NavigationType } from '../../common/constants';
     MatProgressBarModule,
     BasicTableComponent,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './locations.component.html',
   styleUrl: './locations.component.css',
@@ -31,9 +36,7 @@ export default class LocationsComponent {
   columns = signal(locationTableColums);
   displayedColumns = signal(locationTableColums);
 
-  //obtenemos el paginator
-  paginator = viewChild(MatPaginator);
-
+  filter = signal('');
 
   private setPage(page: number) { 
     this.locationService.getLocations({page});
@@ -41,6 +44,10 @@ export default class LocationsComponent {
 
   handlePageEvent(e: PageEvent) {
     this.setPage(e.pageIndex + 1);
+  }
+
+  applyFilter(event: Event) {
+    applyFilter(this.filter, event);
   }
 
 }

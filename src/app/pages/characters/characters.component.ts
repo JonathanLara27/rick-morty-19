@@ -8,6 +8,9 @@ import { Character } from '../../common/interfaces';
 import { NavigationType, characterTableColums, displayedColumnsCharacter } from '../../common/constants';
 import { NavigationPagesComponent } from '../../common/components/navigation-pages/navigation-pages.component';
 import { CardCharacterComponent } from '../../common/components/card-character/card-character.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { applyFilter } from '../../common/utils';
 @Component({
   selector: 'app-characters',
   standalone: true,
@@ -16,6 +19,8 @@ import { CardCharacterComponent } from '../../common/components/card-character/c
     MatProgressBarModule,
     BasicTableComponent,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
     NavigationPagesComponent,
     CardCharacterComponent,
 ],
@@ -37,6 +42,8 @@ export default class CharactersComponent {
   columns = signal(characterTableColums);
   displayedColumns = signal(displayedColumnsCharacter);
 
+  filter = signal('');
+
   private setPage(page: number) {
     this.characterService.getCharacters({page});
   }
@@ -47,6 +54,10 @@ export default class CharactersComponent {
 
   setNavigationType(navigationType: NavigationType) {
     this.characterService.setNavigationType(navigationType);
+  }
+
+  applyFilter(event: Event) {
+    applyFilter(this.filter, event);
   }
 
 }

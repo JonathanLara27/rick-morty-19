@@ -1,9 +1,13 @@
 <section class="container-page">
     <div class="container-table shadow-lg p-3 mt-3">
+        <mat-form-field appearance="outline" class="input-search">
+            <mat-label>Búsqueda rápida</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ejm: Abadango">
+        </mat-form-field>
         @if(isLoading()) {
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         }
-        <app-basic-table [columns]="columns()" [data]="locations()" [isLoading]="isLoading()"></app-basic-table>
+        <app-basic-table [columns]="columns()" [data]="locations()" [isLoading]="isLoading()" [filter]="filter()"></app-basic-table>
         <mat-paginator #paginator [length]="total()"  (page)="handlePageEvent($event)"
             [showFirstLastButtons]="true" [pageIndex]="currentPage()">
         </mat-paginator>

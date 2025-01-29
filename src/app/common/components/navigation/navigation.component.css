@@ -9,10 +9,14 @@
 .nav {
   text-decoration: none;
   color: rgb(0, 0, 0);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .active {
-  color: rgb(47, 47, 47);
+  color: rgb(79, 135, 71);
   font-weight: bold;
   transition: background-color 0.3s;
 }
