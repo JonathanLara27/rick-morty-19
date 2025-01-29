@@ -12,10 +12,6 @@ export const routes: Routes = [
                         loadComponent: () => import('./pages/characters/characters.component')
                     },
                     {
-                        path: ':id',
-                        loadComponent: () => import('./common/components/character/character.component')
-                    },
-                    {
                         path: '**',
                         redirectTo: ''
                     }
@@ -29,10 +25,6 @@ export const routes: Routes = [
                         loadComponent: () => import('./pages/episodes/episodes.component')
                     },
                     {
-                        path: ':id',
-                        loadComponent: () => import('./common/components/episode/episode.component')
-                    },
-                    {
                         path: '**',
                         redirectTo: ''
                     }
@@ -44,10 +36,6 @@ export const routes: Routes = [
                     {
                         path: '',
                         loadComponent: () => import('./pages/locations/locations.component')
-                    },
-                    {
-                        path: ':id',
-                        loadComponent: () => import('./common/components/location/location.component')
                     },
                     {
                         path: '**',
