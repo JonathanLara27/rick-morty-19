@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
     gap: 1rem;
-    padding: 2rem;
+    padding: 0.5rem;
     background-color: rgb(252, 249, 245);
 }
 
@@ -19,5 +19,9 @@
   color: rgb(79, 135, 71);
   font-weight: bold;
   transition: background-color 0.3s;
+}
+
+.title {
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
 }
 
