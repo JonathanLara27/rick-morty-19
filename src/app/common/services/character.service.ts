@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { ENDPOINTS, INITIAL_STATE_CHARACTERS, NavigationType } from '../constants';
-import {Character, responseCharacter, stateCharacter} from '../interfaces/character.interface';
+import { responseCharacter, stateCharacter} from '../interfaces/character.interface';
 import { Pagination } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
 import { setLoading, setNavigationType } from '../utils';

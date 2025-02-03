@@ -23,9 +23,7 @@ export class BasicTableComponent {
 
   tableDataSource = computed(() => {
     const dataSource = new MatTableDataSource<Character | Episode | Location>(this.data() as Character[] | Episode[] | Location[]);
-    if (this.filter()) {
-      dataSource.filter = this.filter()!.trim().toLowerCase();
-    }
+    this.filter() && (dataSource.filter = this.filter()!.trim().toLowerCase());
     return dataSource;
   });
 

@@ -1,8 +1,8 @@
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
-import { ENDPOINTS, INITIAL_STATE_EPISODES, NavigationType } from '../constants';
+import { ENDPOINTS, INITIAL_STATE_EPISODES } from '../constants';
 import { HttpClient } from '@angular/common/http';
 import { Episode, Pagination, responseEpisode, stateEpisode } from '../interfaces';
-import { setLoading, setNavigationType } from '../utils';
+import { setLoading } from '../utils';
 import { resetSignal } from '../utils/resetSignal';
 import { firstValueFrom, timer } from 'rxjs';
 

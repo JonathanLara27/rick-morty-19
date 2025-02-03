@@ -1,5 +1,5 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { ENDPOINTS, INITIAL_STATE_LOCATIONS, NavigationType } from '../constants';
+import { ENDPOINTS, INITIAL_STATE_LOCATIONS } from '../constants';
 import { HttpClient } from '@angular/common/http';
 import { Location, Pagination, responseLocation, stateLocation } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
