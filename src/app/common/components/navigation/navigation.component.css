@@ -16,9 +16,9 @@
 }
 
 .active {
-  color: rgb(79, 135, 71);
+  color: rgb(84, 175, 255);
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.5s;
 }
 
 .title {

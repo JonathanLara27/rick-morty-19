@@ -1,8 +1,6 @@
 .card-character {
   border-radius: 20px;
-  /* max-width: 200px; */
-  /* max-width: 300px; */
-  background-color: rgb(232, 232, 232);
+  background-color: white;
 }
 
 .card-character img {

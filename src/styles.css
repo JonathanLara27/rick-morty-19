@@ -15,8 +15,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     position: relative;
     border-radius: 20px;
     background-color: white;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    /* padding-top: 2rem; */
+    /* padding-bottom: 2rem; */
 }
 
 .shadow-md {
