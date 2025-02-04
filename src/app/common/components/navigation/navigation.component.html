@@ -1,6 +1,6 @@
 <section class="navs">
     <h1 class="title">Rick and Morty App</h1>
     @for (item of tabs(); track $index) {
-        <a mat-button [routerLink]="item" routerLinkActive="active" class="nav">{{ item | uppercase }}</a>
+        <a mat-button [routerLink]="item" routerLinkActive="active" class="nav-item">{{ item | uppercase }}</a>
     }
 </section>
