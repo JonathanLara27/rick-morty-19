@@ -16,8 +16,8 @@
                 </mat-paginator>
         </div>
     }@else {
-        <mat-paginator [pageSize]="characters().length" [length]="total()" (page)="handlePageEvent($event)"
-            [showFirstLastButtons]="true" [pageIndex]="currentPage()">
+        <mat-paginator [length]="total()" (page)="handlePageEvent($event)" [showFirstLastButtons]="true"
+            [pageIndex]="currentPage()">
         </mat-paginator>
         <section class="container-cards p-3">
             @for (item of characters(); track item.id) {
