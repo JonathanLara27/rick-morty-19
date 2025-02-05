@@ -1,10 +1,11 @@
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { ENDPOINTS, INITIAL_STATE_EPISODES } from '../constants';
 import { HttpClient } from '@angular/common/http';
-import { Episode, Pagination, responseEpisode, stateEpisode } from '../interfaces';
+import { Episode, InfoPagination, Pagination, responseEpisode, stateEpisode } from '../interfaces';
 import { setLoading } from '../utils';
 import { resetSignal } from '../utils/resetSignal';
 import { firstValueFrom, timer } from 'rxjs';
+import { updatePagination } from '../utils/updatePagination';
 
 @Injectable({
   providedIn: 'root'
@@ -40,18 +41,8 @@ export class EpisodeService {
         results.forEach(episode => {
           this.stateEpisodes().episodes.set(episode.id, episode);
         });
-        this.stateEpisodes.update((state) => ({
-          ...state,
-          episodes: this.stateEpisodes().episodes,
-          info: {
-            count,
-            next,
-            pages,
-            prev,
-            currentPage: page,
-          },
-          isLoading: false,
-        }));
+        const newInfo: InfoPagination = {count,next,pages,prev,currentPage: page}
+        updatePagination(this.stateEpisodes, newInfo);
       }
     });
   }

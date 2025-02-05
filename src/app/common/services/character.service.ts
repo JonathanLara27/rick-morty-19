@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { ENDPOINTS, INITIAL_STATE_CHARACTERS, NavigationType } from '../constants';
 import { responseCharacter, stateCharacter} from '../interfaces/character.interface';
-import { Pagination } from '../interfaces';
+import { InfoPagination, Pagination } from '../interfaces';
 import { firstValueFrom, timer } from 'rxjs';
 import { setLoading, setNavigationType } from '../utils';
 import { resetSignal } from '../utils/resetSignal';
+import { updatePagination } from '../utils/updatePagination';
 
 @Injectable({
   providedIn: 'root'
@@ -41,18 +42,8 @@ export class CharacterService {
           results.forEach(character => {
             this.stateCharacters().characters.set(character.id, character);
           });
-          this.stateCharacters.update((state) => ({
-            ...state,
-            characters: this.stateCharacters().characters,
-            info: {
-              count,
-              next,
-              pages,
-              prev,
-              currentPage: page,
-            },
-            isLoading: false,
-          }));
+          const newInfo : InfoPagination = {count,next,pages,prev,currentPage: page}
+          updatePagination(this.stateCharacters, newInfo);
         }
       });
   }

@@ -5,6 +5,7 @@ import { Location, Pagination, responseLocation, stateLocation } from '../interf
 import { firstValueFrom, timer } from 'rxjs';
 import { setLoading } from '../utils';
 import { resetSignal } from '../utils/resetSignal';
+import { updatePagination } from '../utils/updatePagination';
 
 @Injectable({
   providedIn: 'root'
@@ -40,18 +41,8 @@ export class LocationService {
           results.forEach(location => {
             this.stateLocations().locations.set(location.id, location);
           });
-          this.stateLocations.update((state) => ({
-            ...state,
-            locations: this.stateLocations().locations,
-            info: {
-              count,
-              next,
-              pages,
-              prev,
-              currentPage: page,
-            },
-            isLoading: false,
-          }));
+          const newInfo = {count,next,pages,prev,currentPage: page};
+          updatePagination(this.stateLocations, newInfo);
         }
     });
   }
