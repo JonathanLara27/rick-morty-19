@@ -13,7 +13,7 @@ export const characterTableColums : TableColumn[] = [
     {header: 'Ubicación', field: 'location', subfield: 'name'},
     // {header: 'Episodios', field: 'episode', type: 'array', cellClass: 'text-center'},
     {header: 'Url', field: 'url', cellClass: 'text-center', headerClass: 'text-center', type: 'url'},
-    { header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center', headerClass: 'text-center' },
+    { header: 'Creado', field: 'created', type: 'datetime', cellClass: 'text-center', headerClass: 'text-center' },
 ]
 
 export const displayedColumnsCharacter = characterTableColums.map(column => column.field);

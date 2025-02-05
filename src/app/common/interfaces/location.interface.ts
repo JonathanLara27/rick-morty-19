@@ -1,4 +1,3 @@
-import { NavigationType } from "../constants";
 import { InfoPagination } from "./info.interface";
 
 export interface responseLocation {

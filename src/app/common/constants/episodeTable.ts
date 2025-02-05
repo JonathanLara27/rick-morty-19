@@ -6,7 +6,7 @@ export const episodeTableColumns : TableColumn[] = [
     {header: 'Fecha de emisión', field: 'air_date', cellClass: 'text-center',headerClass: 'text-center'},
     {header: 'Episodio', field: 'episode', cellClass: 'text-center',headerClass: 'text-center'},
     {header: 'Url', field: 'url', cellClass: 'text-center',headerClass: 'text-center', type: 'url'},
-    {header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center',headerClass: 'text-center'},
+    { header: 'Creado', field: 'created', type: 'datetime', cellClass: 'text-center',headerClass: 'text-center'},
 ]
 
 export const displayedColumnsEpisode = episodeTableColumns.map(column => column.field);

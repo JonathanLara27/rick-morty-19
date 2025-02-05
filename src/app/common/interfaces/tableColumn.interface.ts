@@ -3,7 +3,7 @@ export interface TableColumn {
     headerClass?: string;
     field: string;
     cellClass?: string;
-    cellClass2?: (row: any) => void;
-    type?: 'date' | 'dateHora' | 'array' | 'url' ;
+    cellClass2?: (row: any) => string;
+    type?: 'datetime' | 'url' ;
     subfield?: string; // Nueva propiedad opcional
 }

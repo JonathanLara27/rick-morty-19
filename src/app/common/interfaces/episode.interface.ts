@@ -1,5 +1,4 @@
 import { InfoPagination } from ".";
-import { NavigationType } from "../constants";
 
 export interface responseEpisode {
     info: InfoPagination;

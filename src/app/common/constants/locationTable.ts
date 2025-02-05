@@ -6,7 +6,7 @@ export const locationTableColums : TableColumn[] = [
     {header: 'Tipo', field: 'type'},
     {header: 'Dimensión', field: 'dimension'},
     {header: 'Url', field: 'url', cellClass: 'text-center', type: 'url', headerClass: 'text-center'},
-    {header: 'Creado', field: 'created', type: 'dateHora', cellClass: 'text-center', headerClass: 'text-center'},
+    { header: 'Creado', field: 'created', type: 'datetime', cellClass: 'text-center', headerClass: 'text-center'},
 ];
 
 export const displayedColumnsLocation = locationTableColums.map(column => column.field);
